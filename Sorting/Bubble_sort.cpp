@@ -1,32 +1,37 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
+// Function for selection sort
+void bubble_sort(vector<int>& arr,int n) {
+    for(int i=1;i<n;i++) {
+        int didswap=0; // Applying optmization on bubble sort
+        for(int j=0;j<n-i;j++) {
+            if(arr[j]>arr[j+1]) {
+                swap(arr[j],arr[j+1]);
+                didswap++;
+            }
+        }
+        if(didswap==0) break;
+    }
+}
+
 int main() {
+    // Taking the size of vector
     int n;
     cout << "Enter size of an Array : ";
     cin >> n;
 
-    int arr[n];
+    vector<int> arr(n);
+    // Taking input for vector
     cout << "Enter element of an Array :- ";
-    for(int i=0;i<n;i++) {
-        cin >> arr[i];
-    }
+    for(auto &it:arr) cin >> it;
 
-    cout << "Array is sorting using bubble sort. \n";
-    for(int i=0;i<n-1;i++) {
-        for(int j=0;j<n-i-1;j++) {
-            if(arr[j]>arr[j+1]) {
-                int a=arr[j];
-                arr[j]=arr[j+1];
-                arr[j+1]=a;
-            }
-        }
-    }
+    // Calling the bubble sort function
+    bubble_sort(arr,n);
 
+    // Printing the sorted array.
     cout << "Printing sorted Array :- ";
-    for(int i=0;i<n;i++) {
-        cout << arr[i] << " ";
-    }
+    for(auto it:arr) cout << it << " ";
     cout << "\n"; 
 
     return 0;
